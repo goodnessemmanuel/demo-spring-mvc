@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Customer Detail</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/4.6.0/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/4.6.0/css/bootstrap.min.css}"  media="screen" rel="stylesheet">
+</head>
+
+<body class="container">
+
+<h4>Add New Customer</h4>
+
+<form action="#" th:action="@{/addcustomer}" method="post" th:object="${customer}">
+
+    <input class="form-control" type="hidden" th:field="*{id}" /><br/>
+
+    <label>Name: </label>
+    <input class="form-control" type="text" th:field="*{name}" /><br/>
+
+    <label>E-mail: </label>
+    <input class="form-control" type="text" th:field="*{email}" /><br/>
+
+    <label class="fo">Phone: </label>
+    <input class="form-control" type="text" th:field="*{phone}" /><br/>
+
+    <button class="btn btn-primary" type="submit">Add</button>
+</form>
+
+<script src="http://cdn.jsdelivr.net/webjars/org.webjars/jquery/3.5.1/jquery.js"
+        th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+<script src="http://cdn.jsdelivr.net/webjars/popper.js/1.15.0/popper.min.js"
+        th:src="@{/webjars/popper.js/1.15.0/popper.min.js}"></script>
+<script src="http://cdn.jsdelivr.net/webjars/bootstrap/4.6.0/bootstrap.min.js"
+        th:src="@{/webjars/bootstrap/4.6.0/bootstrap.min.js}"></script>
+</body>
+
+</html>

@@ -3,11 +3,9 @@ package com.ocheejeh.springmvc.services.impl;
 import com.ocheejeh.springmvc.model.Customer;
 import com.ocheejeh.springmvc.services.CustomerService;
 import org.springframework.stereotype.Service;
+import org.thymeleaf.util.StringUtils;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -29,6 +27,23 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public Customer getCustomerById(int id) {
         return customerMap.get(id);
+    }
+    private Integer getNextID(){
+        return Collections.max(customerMap.keySet()) + 1;
+
+    }
+
+    @Override
+    public Customer addCustomer(Customer customer) {
+
+        if(customer != null) {
+            if(!customerMap.containsKey(customer.getId())) {
+                customer.setId(getNextID());
+            }
+            customerMap.put(customer.getId(), customer);
+            return customer;
+        }
+        throw new RuntimeException("customer value cannot be null");
     }
 
     public void loadCustomers(){

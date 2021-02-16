@@ -1,10 +1,12 @@
 package com.ocheejeh.springmvc.controllers;
 
+import com.ocheejeh.springmvc.model.Customer;
 import com.ocheejeh.springmvc.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -32,5 +34,25 @@ public class IndexController {
     public String showCustomers(@PathVariable Integer id, Model model){
         model.addAttribute("customer", customerService.getCustomerById(id));
         return "customer";
+    }
+
+    @PostMapping("/addcustomer")
+    public String addCustomer(Customer customer){
+        Customer $customer = customerService.addCustomer(customer);
+        return "redirect:/customer/" + $customer.getId();
+    }
+
+
+    @RequestMapping("/new-customer")
+    public String showCustomerForm(Model model){
+        model.addAttribute("customer", new Customer());
+        return "new-customer";
+    }
+
+    @RequestMapping("/edit-customer/{id}")
+    public String showEditCustomerForm(@PathVariable Integer id, Model model){
+        Customer $customer = customerService.getCustomerById(id);
+        model.addAttribute("customer", $customer);
+        return "new-customer";
     }
 }
