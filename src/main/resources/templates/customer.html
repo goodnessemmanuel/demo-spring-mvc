@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Customers Store</title>
+    <title>Customer Detail</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link href="http://cdn.jsdelivr.net/webjars/bootstrap/4.6.0/css/bootstrap.min.css"
           th:href="@{/webjars/bootstrap/4.6.0/css/bootstrap.min.css}"
@@ -12,22 +12,24 @@
 
 <body class="container">
 
-<h4>Customer List!</h4>
+<h4>Customer</h4>
 <table  class="table table-bordered">
-    <thead class="tab-pane">
+    <tbody th:object="${customer}" class="tab-content">
         <tr>
-            <th>ID</th>
-            <th>NAME</th>
-            <th>EMAIL</th>
-            <th>PHONE</th>
+            <td> ID </td>
+            <td th:text="*{id}"></td>
         </tr>
-    </thead>
-    <tbody class="tab-content">
-        <tr th:each="customer : ${customers}">
-            <td th:text="${customer.id}"></td>
-            <td th:text="${customer.name}"></td>
-            <td th:text="${customer.email}"></td>
-            <td th:text="${customer.phone}"></td>
+        <tr>
+            <td> Name </td>
+            <td th:text="*{name}"></td>
+        </tr>
+        <tr>
+            <td> Email </td>
+            <td th:text="*{email}"></td>
+        </tr>
+        <tr>
+            <td> Phone </td>
+            <td th:text="*{phone}"></td>
         </tr>
     </tbody>
 </table>
