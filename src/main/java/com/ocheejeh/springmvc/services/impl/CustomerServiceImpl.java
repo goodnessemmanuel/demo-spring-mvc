@@ -46,6 +46,11 @@ public class CustomerServiceImpl implements CustomerService {
         throw new RuntimeException("customer value cannot be null");
     }
 
+    @Override
+    public void deleteCustomer(int id) {
+        customerMap.remove(id);
+    }
+
     public void loadCustomers(){
         customerMap = new HashMap<>();
         Customer customer1 = new Customer();

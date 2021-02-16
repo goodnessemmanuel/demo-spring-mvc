@@ -49,10 +49,22 @@ public class IndexController {
         return "new-customer";
     }
 
+    /**
+     *
+     * @param id get the target customer to be edited
+     * @param model to edit customer previous detail
+     * @return
+     */
     @RequestMapping("/edit-customer/{id}")
     public String showEditCustomerForm(@PathVariable Integer id, Model model){
         Customer $customer = customerService.getCustomerById(id);
         model.addAttribute("customer", $customer);
         return "new-customer";
+    }
+
+    @RequestMapping("/delete-customer/{id}")
+    public String deleteCustomerDetail(@PathVariable Integer id){
+        customerService.deleteCustomer(id);
+        return "redirect:/customers";
     }
 }
