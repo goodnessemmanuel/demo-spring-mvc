@@ -5,30 +5,39 @@
 <head>
     <title>Customers Store</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/4.6.0/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/4.6.0/css/bootstrap.min.css}"
+          media="screen" rel="stylesheet">
 </head>
 
-<body>
+<body class="container">
 
 <h4>Customer List!</h4>
-<table>
-    <tr>
-        <th>ID</th>
-        <th>NAME</th>
-        <th>EMAIL</th>
-        <th>PHONE</th>
-    </tr>
-    <tr th:each="customer : ${customers}">
-        <td th:text="${customer.id}"></td>
-        <td th:text="${customer.name}"></td>
-        <td th:text="${customer.email}"></td>
-        <td th:text="${customer.phone}"></td>
-    </tr>
+<table  class="table table-bordered">
+    <thead class="tab-pane">
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>EMAIL</th>
+            <th>PHONE</th>
+        </tr>
+    </thead>
+    <tbody class="tab-content">
+        <tr th:each="customer : ${customers}">
+            <td th:text="${customer.id}"></td>
+            <td th:text="${customer.name}"></td>
+            <td th:text="${customer.email}"></td>
+            <td th:text="${customer.phone}"></td>
+        </tr>
+    </tbody>
 </table>
 
-<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
-<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script src="http://cdn.jsdelivr.net/webjars/org.webjars/jquery/3.5.1/jquery.js"
+        th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+<script src="http://cdn.jsdelivr.net/webjars/popper.js/1.15.0/popper.min.js"
+        th:src="@{/webjars/popper.js/1.15.0/popper.min.js}"></script>
+<script src="http://cdn.jsdelivr.net/webjars/bootstrap/4.6.0/bootstrap.min.js"
+        th:src="@{/webjars/bootstrap/4.6.0/bootstrap.min.js}"></script>
 </body>
 
 </html>
