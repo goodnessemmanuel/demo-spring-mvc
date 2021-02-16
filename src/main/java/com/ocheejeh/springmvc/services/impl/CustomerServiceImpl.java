@@ -11,16 +11,28 @@ import java.util.Map;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
+    Map<Integer, Customer> customerMap;
 
-    @Override
-    public List<Customer> getCustomers() {
-        List<Customer> customers = new ArrayList<>();
-        loadCustomers().forEach((key, value) -> customers.add(value));
-        return customers;
+    public CustomerServiceImpl() {
+        this.loadCustomers();
     }
 
-    public Map<Integer, Customer> loadCustomers(){
-        Map<Integer, Customer> customerMap = new HashMap<>();
+    /**
+     *
+     * @return array list of all values in customer's map
+     */
+    @Override
+    public List<Customer> listAllCustomers() {
+        return new ArrayList<>(customerMap.values());
+    }
+
+    @Override
+    public Customer getCustomerById(int id) {
+        return customerMap.get(id);
+    }
+
+    public void loadCustomers(){
+        customerMap = new HashMap<>();
         Customer customer1 = new Customer();
         customer1.setId(1);
         customer1.setName("John");
@@ -44,6 +56,5 @@ public class CustomerServiceImpl implements CustomerService {
         customer3.setPhone("08089786901");
 
         customerMap.put(customer3.getId(), customer3);
-        return customerMap;
     }
 }
