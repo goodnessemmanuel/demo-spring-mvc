@@ -12,8 +12,8 @@
 <body class="container">
 
 <h4>Add New Customer</h4>
-
-<form action="#" th:action="@{/addcustomer}" method="post" th:object="${customer}">
+<!--alternatively th:action="@{/templates/customers/add}-->
+<form action="#" th:action="@{/customers/add}" method="post" th:object="${customer}">
 
     <input class="form-control" type="hidden" th:field="*{id}" /><br/>
 
