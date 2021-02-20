@@ -11,13 +11,14 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.instanceOf;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 class CustomerControllerTest {
@@ -50,4 +51,44 @@ class CustomerControllerTest {
                 .andExpect(model().attribute("customers", hasSize(2)));
     }
 
+    @Test
+    @DisplayName("display customer given the customer id")
+    void showCustomerWithId() throws Exception {
+        int id = 1;
+        when(customerService.getCustomerById(id)).thenReturn(new Customer());
+
+        mockMvc.perform(get("/customers/view-customer/1"))
+                .andExpect(view().name("customers/customer"))
+                .andExpect(model().attribute("customer", instanceOf((Customer.class))));
+    }
+
+    @Test
+    @DisplayName("edit customer given the customer id")
+    void editCustomerWithId() throws Exception {
+        int id = 1;
+        when(customerService.getCustomerById(id)).thenReturn(new Customer());
+
+        mockMvc.perform(get("/customers/edit-customer/1"))
+                .andExpect(view().name("customers/new-customer"))
+                .andExpect(model().attribute("customer", instanceOf((Customer.class))));
+    }
+
+    @Test
+    @DisplayName("should display add new customer form")
+    void showNewCustomerForm() throws Exception {
+        //customer service should not be called here
+        verifyNoInteractions(customerService);
+        mockMvc.perform(get("/customers/add"))
+                .andExpect(view().name("customers/new-customer"))
+                .andExpect(model().attribute("customer", instanceOf(Customer.class)));
+    }
+
+    @Test
+    @DisplayName("Should add new customer")
+    void shouldAddNewCustomer(){
+        String name = "James";
+        String email = "James@gmail.com";
+        String phone = "0904534234";
+
+    }
 }
