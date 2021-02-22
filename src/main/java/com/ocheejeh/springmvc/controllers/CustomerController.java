@@ -34,7 +34,7 @@ public class CustomerController {
     @PostMapping("/add")
     public String addCustomer(Customer customer){
         Customer $customer = customerService.addCustomer(customer);
-        return "redirect:/customers/list" + $customer.getId();
+        return "redirect:/customers/view-customer/" + $customer.getId();
     }
 
 
