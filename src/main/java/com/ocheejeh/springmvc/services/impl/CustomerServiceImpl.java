@@ -25,7 +25,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer getCustomerById(int id) {
+    public Customer getCustomerById(Integer id) {
         return customerMap.get(id);
     }
     private Integer getNextID(){
@@ -47,7 +47,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void deleteCustomer(int id) {
+    public void deleteCustomer(Integer id) {
         customerMap.remove(id);
     }
 
