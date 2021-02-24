@@ -2,16 +2,17 @@ package com.ocheejeh.springmvc.services.impl;
 
 import com.ocheejeh.springmvc.model.Customer;
 import com.ocheejeh.springmvc.services.CustomerService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
-import org.thymeleaf.util.StringUtils;
 
 import java.util.*;
 
 @Service
-public class CustomerServiceImpl implements CustomerService {
+@Profile("nojpa")
+public class CustomerServiceImplNoJpa implements CustomerService {
     Map<Integer, Customer> customerMap;
 
-    public CustomerServiceImpl() {
+    public CustomerServiceImplNoJpa() {
         this.loadCustomers();
     }
 
