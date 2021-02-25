@@ -8,9 +8,9 @@ public interface CustomerService {
 
     List<Customer> listAllCustomers();
 
-    Customer getCustomerById(int id);
+    Customer getCustomerById(Integer id);
 
     Customer addCustomer(Customer customer);
 
-    void deleteCustomer(int id);
+    void deleteCustomer(Integer id);
 }
